@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palmer &amp; Co Digital Solutions &mdash; Websites &amp; Digital Support for Local Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --paper: #ffffff;
+    --wash: #f6f4ef;
+    --ink: #20242b;
+    --muted: #6b7280;
+    --line: #e7e4dc;
+    --accent: #2f6f5e;
+    --accent-soft: #e7efe9;
+  }
+  html[data-theme="dark"] {
+    --paper: #15191a;
+    --wash: #1c2222;
+    --ink: #eef0ec;
+    --muted: #94a09a;
+    --line: #2a3230;
+    --accent: #5fae93;
+    --accent-soft: #1f2e28;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.5;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+  a { color: inherit; }
+
+  /* ===== HEADER / NAV ===== */
+  header.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    transition: background 0.25s ease, border-color 0.25s ease;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; cursor: pointer; background: none; border: none; padding: 0; }
+  .mark { width: 26px; height: 26px; flex-shrink: 0; }
+  .mark rect.tile { fill: var(--accent); transition: fill 0.25s ease; }
+  .mark line { stroke: var(--paper); transition: stroke 0.25s ease; }
+  .mark text { fill: var(--paper); transition: fill 0.25s ease; }
+  .brand-name { display: flex; flex-direction: column; line-height: 1.1; text-align: left; }
+  .brand-name .script {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--accent);
+  }
+  .brand-name .sub-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .header-right { display: flex; align-items: center; gap: 10px; }
+
+  nav.primary-nav { display: flex; gap: 4px; }
+  nav.primary-nav button {
+    background: none;
+    border: none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  nav.primary-nav button:hover { color: var(--ink); background: var(--wash); }
+  nav.primary-nav button.active { color: var(--accent); background: var(--accent-soft); }
+
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    background: var(--wash);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 13px;
+    transition: background 0.25s ease, border-color 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    width: 36px; height: 36px;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink);
+    cursor: pointer;
+  }
+
+  @media (max-width: 560px) {
+    nav.primary-nav { display: none; }
+    .nav-toggle { display: flex; }
+  }
+
+  /* Mobile nav drawer */
+  .mobile-nav {
+    display: none;
+    flex-direction: column;
+    border-top: 1px solid var(--line);
+    padding: 8px 0 14px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav button {
+    background: none;
+    border: none;
+    text-align: left;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--muted);
+    padding: 12px 4px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--line);
+  }
+  .mobile-nav button:last-child { border-bottom: none; }
+  .mobile-nav button.active { color: var(--accent); }
+
+  /* ===== PAGES ===== */
+  .page { display: none; padding: 48px 0 80px; }
+  .page.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) { .page.active { animation: none; } }
+
+  .eyebrow {
+    font-size: 12.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--accent);
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+
+  /* ----- HOME ----- */
+  .hero h1 {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+  }
+  .hero h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 17px; color: var(--muted); max-width: 44ch; margin: 0 0 32px; }
+
+  .cta-row { display: flex; gap: 12px; margin-bottom: 64px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    padding: 13px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary { background: var(--accent); color: var(--paper); }
+  .btn-secondary { background: none; border-color: var(--line); color: var(--ink); }
+
+  .home-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    border-top: 1px solid var(--line);
+    padding-top: 32px;
+    margin-bottom: 56px;
+  }
+  .strip-item .num { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 600; font-size: 26px; color: var(--accent); display: block; margin-bottom: 4px; }
+  .strip-item .label { font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+  @media (max-width: 480px) {
+    .home-strip { grid-template-columns: 1fr; gap: 20px; }
+  }
+
+  .preview-block {
+    background: var(--accent-soft);
+    border-radius: 16px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+  }
+  .preview-block h3 {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 0 0 8px;
+  }
+  .preview-block p { color: var(--muted); font-size: 14.5px; margin: 0 0 16px; }
+  .text-link {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ----- SHARED: section heading ----- */
+  .page-head { margin-bottom: 40px; }
+  .page-head h2 {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 30px;
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .page-head .lead { font-size: 15.5px; color: var(--muted); max-width: 50ch; margin: 0; }
+
+  /* ----- SERVICES ----- */
+  .service-card {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px 22px;
+    margin-bottom: 16px;
+  }
+  .service-card .top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .service-card h3 {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 19px;
+    margin: 0;
+  }
+  .service-card .price {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--accent);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .service-card .price small { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 12px; color: var(--muted); font-weight: 500; }
+  .service-card .freq-tag {
+    display: inline-block;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .service-card p.desc { color: var(--muted); font-size: 14.5px; margin: 0 0 14px; }
+  .service-card ul.feature-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .service-card ul.feature-list li {
+    font-size: 13.5px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 7px;
+  }
+  .service-card ul.feature-list li:last-child { margin-bottom: 0; }
+  .service-card ul.feature-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ----- ABOUT ----- */
+  .trust-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .trust-item {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 18px 16px;
+  }
+  .trust-item .t-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .trust-item .t-desc { font-size: 13.5px; color: var(--muted); line-height: 1.5; }
+  @media (max-width: 480px) {
+    .trust-grid { grid-template-columns: 1fr; }
+  }
+
+  .about-prose p { font-size: 15px; color: var(--ink); margin: 0 0 16px; line-height: 1.65; }
+  .about-prose p:last-child { margin-bottom: 0; }
+
+  /* ----- CONTACT ----- */
+  .contact-block {
+    background: var(--accent-soft);
+    border-radius: 16px;
+    padding: 30px 24px;
+  }
+  .contact-lead {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 21px;
+    margin: 0 0 22px;
+  }
+  .contact-row { display: flex; gap: 12px; margin-bottom: 6px; }
+  .contact-link {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s ease;
+  }
+  .contact-link:hover { border-color: var(--accent); }
+  .contact-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .contact-value { font-size: 14.5px; font-weight: 600; word-break: break-word; }
+  @media (max-width: 480px) {
+    .contact-row { flex-direction: column; }
+  }
+  .contact-note { font-size: 13px; color: var(--muted); margin: 18px 0 0; }
+
+  footer.site-footer {
+    border-top: 1px solid var(--line);
+    padding: 24px 0 48px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  footer.site-footer strong { color: var(--ink); }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="topbar">
+      <button class="brand" onclick="goTo('home')" aria-label="Go to home">
+        <svg class="mark" viewBox="0 0 80 80" aria-hidden="true">
+          <rect class="tile" x="0" y="0" width="80" height="80" rx="18"/>
+          <line x1="40" y1="14" x2="40" y2="66" stroke-width="1.5" opacity="0.3"/>
+          <line x1="14" y1="40" x2="66" y2="40" stroke-width="1.5" opacity="0.3"/>
+          <text x="26" y="35" font-family="Inter, sans-serif" font-weight="800" font-size="14" text-anchor="middle">P</text>
+          <text x="54" y="35" font-family="Inter, sans-serif" font-weight="800" font-size="14" text-anchor="middle">C</text>
+          <text x="26" y="55" font-family="Inter, sans-serif" font-weight="800" font-size="14" text-anchor="middle">D</text>
+          <text x="54" y="55" font-family="Inter, sans-serif" font-weight="800" font-size="14" text-anchor="middle">S</text>
+        </svg>
+        <div class="brand-name">
+          <span class="script">Palmer &amp; Co</span>
+          <span class="sub-label">Digital Solutions</span>
+        </div>
+      </button>
+
+      <div class="header-right">
+        <nav class="primary-nav" id="primary-nav">
+          <button data-page="home" onclick="goTo('home')">Home</button>
+          <button data-page="services" onclick="goTo('services')">Services</button>
+          <button data-page="about" onclick="goTo('about')">About</button>
+          <button data-page="contact" onclick="goTo('contact')">Contact</button>
+        </nav>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+          <span id="theme-dot">&#9728;</span>
+        </button>
+        <button class="nav-toggle" onclick="toggleMobileNav()" aria-label="Open menu" id="nav-toggle-btn">
+          &#9776;
+        </button>
+      </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobile-nav">
+      <button data-page="home" onclick="goTo('home')">Home</button>
+      <button data-page="services" onclick="goTo('services')">Services</button>
+      <button data-page="about" onclick="goTo('about')">About</button>
+      <button data-page="contact" onclick="goTo('contact')">Contact</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <!-- ===== HOME ===== -->
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <h1>Finding the <em>right solution</em><br>for your business.</h1>
+        <p class="hero-sub">Websites and digital support, built around you &mdash; so you can get on with the job you actually do.</p>
+        <div class="cta-row">
+          <button class="btn btn-primary" onclick="goTo('contact')">Get in touch</button>
+          <button class="btn btn-secondary" onclick="goTo('services')">See services &amp; pricing</button>
+        </div>
+
+        <div class="home-strip">
+          <div class="strip-item">
+            <span class="num">&pound;149</span>
+            <span class="label">To get a custom site live, start to finish.</span>
+          </div>
+          <div class="strip-item">
+            <span class="num">Days</span>
+            <span class="label">Not weeks &mdash; built and launched fast.</span>
+          </div>
+          <div class="strip-item">
+            <span class="num">1&nbsp;person</span>
+            <span class="label">You always deal directly with me, not a queue.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-block">
+        <h3>Websites that just work</h3>
+        <p>A clean, fast site that looks right on every phone &mdash; live in days, with hosting and security handled for you.</p>
+        <button class="text-link" onclick="goTo('services')">See what's included &rarr;</button>
+      </div>
+
+      <div class="preview-block">
+        <h3>Ongoing digital support</h3>
+        <p>Once you're live, I keep things secure and current &mdash; and I'm on hand for whatever comes up next.</p>
+        <button class="text-link" onclick="goTo('about')">Why work with me &rarr;</button>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="page" id="page-services">
+      <div class="page-head">
+        <p class="eyebrow">Services &amp; pricing</p>
+        <h2>Everything&rsquo;s upfront. No surprises.</h2>
+        <p class="lead">One clear price for each thing I do &mdash; pick what you need now, add more later.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="freq-tag">One-off</span>
+        <div class="top-row">
+          <h3>Design &amp; build</h3>
+          <p class="price">&pound;149</p>
+        </div>
+        <p class="desc">A site built around you, live in days.</p>
+        <ul class="feature-list">
+          <li>Simple solutions, built around you</li>
+          <li>Designed for phone, tablet and desktop</li>
+          <li>Live and secured with HTTPS within days</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="freq-tag">Ongoing</span>
+        <div class="top-row">
+          <h3>Care bundle</h3>
+          <p class="price">&pound;20<small> /mo</small></p>
+        </div>
+        <p class="desc">Security, hosting &amp; 1 hour of updates monthly, handled within 48 hours.</p>
+        <ul class="feature-list">
+          <li>HTTPS and underlying code kept current &mdash; always included</li>
+          <li>1 hour/month for text and photo updates</li>
+          <li>Extra time beyond that billed at &pound;25/hr</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="freq-tag">Ongoing</span>
+        <div class="top-row">
+          <h3>Your domain</h3>
+          <p class="price">&pound;8&ndash;15<small> p.a.</small></p>
+        </div>
+        <p class="desc">Registered in your name, so it&rsquo;s always yours &mdash; paid direct to the registrar, not marked up.</p>
+      </div>
+
+      <div class="service-card">
+        <span class="freq-tag">As needed</span>
+        <div class="top-row">
+          <h3>New work</h3>
+          <p class="price">&pound;35<small> /hr</small></p>
+        </div>
+        <p class="desc">New pages, redesigns &amp; bigger changes.</p>
+        <ul class="feature-list">
+          <li>2 hour minimum &mdash; 1 hour design consult + 1 hour build</li>
+          <li>Always quoted upfront before starting, so there are no surprises</li>
+        </ul>
+      </div>
+
+      <div class="service-card">
+        <span class="freq-tag">Coming soon</span>
+        <div class="top-row">
+          <h3>Digital transformation support</h3>
+        </div>
+        <p class="desc">Beyond the website &mdash; automating the admin and repetitive tasks that eat into your week. Get in touch to talk through what's slowing you down.</p>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="page" id="page-about">
+      <div class="page-head">
+        <p class="eyebrow">About</p>
+        <h2>The tech professional tradies want to work with.</h2>
+        <p class="lead">So you can just worry about the trade.</p>
+      </div>
+
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="t-label">Direct contact</div>
+          <div class="t-desc">You deal with me, every time &mdash; no account managers, no call centre.</div>
+        </div>
+        <div class="trust-item">
+          <div class="t-label">Fixed pricing</div>
+          <div class="t-desc">Every price is published upfront. No hidden retainers or surprise invoices.</div>
+        </div>
+        <div class="trust-item">
+          <div class="t-label">Fast turnaround</div>
+          <div class="t-desc">Sites built in days, not weeks. Updates handled within 48 hours.</div>
+        </div>
+        <div class="trust-item">
+          <div class="t-label">Yours to keep</div>
+          <div class="t-desc">Your domain is registered in your name &mdash; never locked into my account.</div>
+        </div>
+      </div>
+
+      <div class="about-prose">
+        <p>Palmer &amp; Co Digital Solutions builds and looks after websites for local, hands-on businesses &mdash; the kind of work where your time is better spent on the job, not on the back end of a website.</p>
+        <p>It starts with a website, built properly and handed over without the jargon. From there, it's ongoing support &mdash; keeping things secure, making changes when you need them, and being a single, reliable point of contact as your digital needs grow.</p>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="page" id="page-contact">
+      <div class="page-head">
+        <p class="eyebrow">Get in touch</p>
+        <h2>Let's get you sorted.</h2>
+      </div>
+
+      <div class="contact-block">
+        <p class="contact-lead">Tell me what you need and I&rsquo;ll handle the rest.</p>
+        <div class="contact-row">
+          <a href="mailto:hello@palmersdigital.co.uk" class="contact-link">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">hello@palmersdigital.co.uk</span>
+          </a>
+          <a href="tel:+447700900123" class="contact-link">
+            <span class="contact-label">Phone</span>
+            <span class="contact-value">07700 900123</span>
+          </a>
+        </div>
+        <p class="contact-note">Usually back to you within a day.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <strong>Palmer &amp; Co Digital Solutions</strong> &middot; Prices correct as of 2026 &middot; Domain paid direct to the registrar
+  </div>
+</footer>
+
+<script>
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.getElementById('theme-dot').innerHTML = theme === 'dark' ? '&#9790;' : '&#9728;';
+  }
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+  }
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(prefersDark ? 'dark' : 'light');
+
+  function goTo(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById('page-' + page).classList.add('active');
+
+    document.querySelectorAll('nav.primary-nav button, .mobile-nav button').forEach(b => {
+      b.classList.toggle('active', b.dataset.page === page);
+    });
+
+    closeMobileNav();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+
+    try {
+      history.replaceState(null, '', '#' + page);
+    } catch (err) {
+      // history.replaceState is blocked on file:// URLs in some browsers — safe to ignore
+    }
+  }
+
+  function toggleMobileNav() {
+    document.getElementById('mobile-nav').classList.toggle('open');
+  }
+  function closeMobileNav() {
+    document.getElementById('mobile-nav').classList.remove('open');
+  }
+
+  // Load correct page from URL hash on first load
+  (function initPage() {
+    const hash = window.location.hash.replace('#', '');
+    const valid = ['home', 'services', 'about', 'contact'];
+    const start = valid.includes(hash) ? hash : 'home';
+    goTo(start);
+  })();
+</script>
+
+</body>
+</html>
