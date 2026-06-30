@@ -379,6 +379,119 @@
   }
   .contact-note { font-size: 13px; color: var(--muted); margin: 18px 0 0; }
 
+  /* ----- TIER CARDS ----- */
+  .tier-card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .tier-card.coming-soon { opacity: 0.75; }
+  .tier-header {
+    padding: 22px 22px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .tier-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
+  .tier-name-group { display: flex; flex-direction: column; gap: 4px; }
+  .tier-badge {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    margin-bottom: 6px;
+    width: fit-content;
+  }
+  .tier-badge.soon { background: var(--wash); color: var(--muted); }
+  .tier-card h3 {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 21px;
+    margin: 0;
+    color: var(--ink);
+  }
+  .tier-tagline { font-size: 13.5px; color: var(--muted); margin: 6px 0 0; }
+  .tier-pricing { text-align: right; flex-shrink: 0; }
+  .tier-build {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+  }
+  .tier-build small { font-family: 'Inter', sans-serif; font-size: 12px; color: var(--muted); font-weight: 500; }
+  .tier-monthly { font-size: 12px; color: var(--muted); margin-top: 4px; display: block; }
+
+  .tier-body { padding: 18px 22px; }
+  .tier-pitch {
+    font-size: 14px;
+    color: var(--ink);
+    margin: 0 0 14px;
+    line-height: 1.55;
+  }
+  .tier-use-case {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .tier-use-case strong { color: var(--ink); font-style: normal; }
+  .tier-features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .tier-features li {
+    font-size: 13.5px;
+    color: var(--muted);
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 7px;
+    line-height: 1.45;
+  }
+  .tier-features li:last-child { margin-bottom: 0; }
+  .tier-features li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .tier-cta {
+    border-top: 1px solid var(--line);
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .tier-cta .cta-note { font-size: 12.5px; color: var(--muted); }
+
+  /* shared add-ons section */
+  .addons-head {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 36px 0 16px;
+    color: var(--ink);
+  }
+
+
   footer.site-footer {
     border-top: 1px solid var(--line);
     padding: 24px 0 48px;
@@ -465,15 +578,15 @@
       </div>
 
       <div class="preview-block">
-        <h3>Websites that just work</h3>
-        <p>A clean, fast site that looks right on every phone &mdash; live in days, with hosting and security handled for you.</p>
-        <button class="text-link" onclick="goTo('services')">See what's included &rarr;</button>
+        <h3>Get found. Get called.</h3>
+        <p>An informative site that puts you on the map &mdash; where you are, what you do, how to reach you. Live in days from £149.</p>
+        <button class="text-link" onclick="goTo('services')">See all three tiers &rarr;</button>
       </div>
 
       <div class="preview-block">
-        <h3>Ongoing digital support</h3>
-        <p>Once you're live, I keep things secure and current &mdash; and I'm on hand for whatever comes up next.</p>
-        <button class="text-link" onclick="goTo('about')">Why work with me &rarr;</button>
+        <h3>Never miss a job.</h3>
+        <p>Upgrade to Interactive and customers can enquire directly to your phone &mdash; even when you&rsquo;re on a job.</p>
+        <button class="text-link" onclick="goTo('services')">See what&rsquo;s included &rarr;</button>
       </div>
     </section>
 
@@ -482,66 +595,134 @@
       <div class="page-head">
         <p class="eyebrow">Services &amp; pricing</p>
         <h2>Everything&rsquo;s upfront. No surprises.</h2>
-        <p class="lead">One clear price for each thing I do &mdash; pick what you need now, add more later.</p>
+        <p class="lead">Three types of site, one clear price each. Pick where you want to start &mdash; you can always upgrade later.</p>
       </div>
 
-      <div class="service-card">
-        <span class="freq-tag">One-off</span>
-        <div class="top-row">
-          <h3>Design &amp; build</h3>
-          <p class="price">&pound;149</p>
+      <!-- TIER 1: Informative -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <div class="tier-top-row">
+            <div class="tier-name-group">
+              <span class="tier-badge">Informative</span>
+              <h3>Get found. Get called.</h3>
+            </div>
+            <div class="tier-pricing">
+              <span class="tier-build">&pound;149</span>
+              <span class="tier-monthly">then &pound;20/mo</span>
+            </div>
+          </div>
+          <p class="tier-tagline">An information-only site. Where you are, what you do, and how to reach you &mdash; that&rsquo;s it.</p>
         </div>
-        <p class="desc">A site built around you, live in days.</p>
-        <ul class="feature-list">
-          <li>Simple solutions, built around you</li>
-          <li>Designed for phone, tablet and desktop</li>
-          <li>Live and secured with HTTPS within days</li>
-        </ul>
+        <div class="tier-body">
+          <div class="tier-use-case">
+            <strong>Perfect for:</strong> A plumber who just wants customers to find them on Google, see what they do, and ring them directly.
+          </div>
+          <ul class="tier-features">
+            <li>Custom site built around your trade and area</li>
+            <li>Works perfectly on every phone, tablet and desktop</li>
+            <li>Live and secured with HTTPS within days</li>
+            <li>1 hour of content updates included every month</li>
+            <li>Security and hosting maintained &mdash; hands off for you</li>
+          </ul>
+        </div>
+        <div class="tier-cta">
+          <span class="cta-note">Domain &pound;8&ndash;15 p.a. &mdash; registered in your name</span>
+          <button class="btn btn-primary" onclick="goTo('contact')">Get started</button>
+        </div>
       </div>
 
-      <div class="service-card">
-        <span class="freq-tag">Ongoing</span>
-        <div class="top-row">
-          <h3>Care bundle</h3>
-          <p class="price">&pound;20<small> /mo</small></p>
+      <!-- TIER 2: Interactive -->
+      <div class="tier-card">
+        <div class="tier-header">
+          <div class="tier-top-row">
+            <div class="tier-name-group">
+              <span class="tier-badge">Interactive</span>
+              <h3>Never miss a job.</h3>
+            </div>
+            <div class="tier-pricing">
+              <span class="tier-build">&pound;499</span>
+              <span class="tier-monthly">then &pound;30/mo</span>
+            </div>
+          </div>
+          <p class="tier-tagline">Everything in Informative, plus customers can enquire directly &mdash; straight to your phone, day or night.</p>
         </div>
-        <p class="desc">Security, hosting &amp; 1 hour of updates monthly, handled within 48 hours.</p>
-        <ul class="feature-list">
-          <li>HTTPS and underlying code kept current &mdash; always included</li>
-          <li>1 hour/month for text and photo updates</li>
-          <li>Extra time beyond that billed at &pound;25/hr</li>
-        </ul>
+        <div class="tier-body">
+          <div class="tier-use-case">
+            <strong>Perfect for:</strong> An electrician who misses jobs because customers ring once, get no answer, and call someone else. Now they fill in a form instead &mdash; and you get a notification.
+          </div>
+          <ul class="tier-features">
+            <li>Everything in Informative</li>
+            <li>Contact form routed directly to your phone</li>
+            <li>Instant email notification for every enquiry</li>
+            <li>Customers can reach you at any hour &mdash; even when you&rsquo;re on a job</li>
+            <li>Spam filtering built in</li>
+            <li>1 hour of content updates included every month</li>
+          </ul>
+        </div>
+        <div class="tier-cta">
+          <span class="cta-note">Domain &pound;8&ndash;15 p.a. &mdash; registered in your name</span>
+          <button class="btn btn-primary" onclick="goTo('contact')">Get started</button>
+        </div>
       </div>
 
-      <div class="service-card">
-        <span class="freq-tag">Ongoing</span>
-        <div class="top-row">
-          <h3>Your domain</h3>
-          <p class="price">&pound;8&ndash;15<small> p.a.</small></p>
+      <!-- TIER 3: Integrated — Coming Soon -->
+      <div class="tier-card coming-soon">
+        <div class="tier-header">
+          <div class="tier-top-row">
+            <div class="tier-name-group">
+              <span class="tier-badge soon">Coming soon</span>
+              <h3>You just turn up.</h3>
+            </div>
+            <div class="tier-pricing">
+              <span class="tier-build">POA</span>
+              <span class="tier-monthly">then &pound;100/mo</span>
+            </div>
+          </div>
+          <p class="tier-tagline">All of the above, plus online booking. Skip the back-and-forth &mdash; customers pick a slot and you get on with the job.</p>
         </div>
-        <p class="desc">Registered in your name, so it&rsquo;s always yours &mdash; paid direct to the registrar, not marked up.</p>
+        <div class="tier-body">
+          <div class="tier-use-case">
+            <strong>Perfect for:</strong> A gas engineer who spends half their evenings confirming appointments by text. Customers book themselves in, you get a calendar notification &mdash; and just show up.
+          </div>
+          <ul class="tier-features">
+            <li>Everything in Interactive</li>
+            <li>Online booking system integrated into your site</li>
+            <li>Customers pick a date and time themselves</li>
+            <li>Automatic confirmations sent to customer and to you</li>
+            <li>No more double-booking or missed follow-ups</li>
+          </ul>
+        </div>
+        <div class="tier-cta">
+          <span class="cta-note">Interested? Get in touch to be first to hear.</span>
+          <button class="btn btn-secondary" onclick="goTo('contact')">Register interest</button>
+        </div>
       </div>
+
+      <!-- ADD-ONS -->
+      <p class="addons-head">Add-ons &amp; extras</p>
 
       <div class="service-card">
         <span class="freq-tag">As needed</span>
         <div class="top-row">
           <h3>New work</h3>
-          <p class="price">&pound;35<small> /hr</small></p>
+          <p class="price">&pound;50<small> /hr</small></p>
         </div>
         <p class="desc">New pages, redesigns &amp; bigger changes.</p>
         <ul class="feature-list">
           <li>2 hour minimum &mdash; 1 hour design consult + 1 hour build</li>
-          <li>Always quoted upfront before starting, so there are no surprises</li>
+          <li>Always quoted upfront before starting</li>
         </ul>
       </div>
 
       <div class="service-card">
-        <span class="freq-tag">Coming soon</span>
+        <span class="freq-tag">As needed</span>
         <div class="top-row">
-          <h3>Digital transformation support</h3>
+          <h3>Extra updates</h3>
+          <p class="price">&pound;35<small> /hr</small></p>
         </div>
-        <p class="desc">Beyond the website &mdash; automating the admin and repetitive tasks that eat into your week. Get in touch to talk through what's slowing you down.</p>
+        <p class="desc">Content changes beyond your included monthly hour, handled within 48 hours.</p>
       </div>
+
     </section>
 
     <!-- ===== ABOUT ===== -->
